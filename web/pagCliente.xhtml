@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Lan House JJJ</title>
+    </h:head>
+    <body>
+        <p:dataTable value="#{clienteMB.clientes}" emptyMessage="Nenhum cliente"
+                     paginatorTemplate="{CurrentPageReport}   {FirstPageLink} {PreviousPageLink}
+                     {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                     paginator="true" rows="5" rowsPerPageTemplate="5,10,15,20,25"
+                     var="cliente" id="tabClientes">
+            <f:facet name="header">  
+                 <h:outputText value="Clientes" /> 
+            </f:facet>
+            
+            <p:column>
+                <f:facet name="header">  
+                    <h:outputText value="Cliente"/> 
+                </f:facet>
+                <h:form>
+                    <p:commandLink ajax="false" value="#{cliente.nome}"
+                                   action="#{clienteMB.carregar(cliente)}"/>
+                </h:form>
+            </p:column>
+            
+            <p:column>
+                <f:facet name="header">  
+                    <h:outputText value="Telefone"/> 
+                </f:facet>
+                <h:form>
+                    <p:commandLink ajax="false" value="#{cliente.telefone}"
+                                   action="#{clienteMB.carregar(cliente)}"/>
+                </h:form>
+            </p:column>
+            
+            <p:column>
+                <f:facet name="header">  
+                    <h:outputText value="E-mail"/> 
+                </f:facet>
+                <h:form>
+                    <p:commandLink ajax="false" value="#{cliente.email}"
+                                   action="#{clienteMB.carregar(cliente)}"/>
+                </h:form>
+            </p:column>
+            
+            
+          
+            <p:column>
+                <f:facet name="header">  
+                    <h:outputText value="Excluir"/> 
+                </f:facet>
+                <h:form>
+                    <p:commandButton ajax="false" image="ui-icon-trash" 
+                                     action="#{clienteMB.excluir(cliente.id)}"/>
+                </h:form>
+            </p:column>
+        </p:dataTable>
+        <hr></hr>
+        
+        <!--Formulario de crud-->
+        
+        <p:panel header="Manutenção de Clientes">
+            <h:form id="formCadClientes">
+                <h:inputHidden value="#{clienteMB.cliente.id}"/>
+                <h:panelGrid columns="3">
+                    <h:outputText value="Nome:"/>
+                    <p:inputText id="campoNome" value="#{clienteMB.cliente.nome}" 
+                                 required="true" requiredMessage="Campo obrigatório"/>
+                    <p:message for="campoNome"/>
+
+                    <h:outputText value="E-mail:"/>
+                    <p:inputText id="campoEmail" value="#{clienteMB.cliente.email}"
+                                 required="true" requiredMessage="Campo obrigatório"/>
+                    <p:message for="campoEmail"/>
+
+                    <h:outputText value="Rua:"/>
+                    <p:inputText id="campoRua" value="#{clienteMB.cliente.rua}"
+                                 required="true" requiredMessage="Campo obrigatório"/>
+                    <p:message for="campoRua"/>
+
+                    <h:outputText value="Número:"/>
+                    <p:inputText id="campoNumero" value="#{clienteMB.cliente.numero}"
+                                 required="true" requiredMessage="Campo obrigatório"/>
+                    <p:message for="campoNumero"/>
+
+                    <h:outputText value="Complemento:"/>
+                    <p:inputText id="campoComplemento" value="#{clienteMB.cliente.complemento}"
+                                 required="true" requiredMessage="Campo obrigatório"/>
+                    <p:message for="campoComplemento"/>
+
+                    <h:outputText value="Bairro:"/>
+                    <p:inputText id="campoBairro" value="#{clienteMB.cliente.bairro}"
+                                 required="true" requiredMessage="Campo obrigatório"/>
+                    <p:message for="campoBairro"/>
+
+                    <h:outputText value="Ponto de Referência:"/>
+                    <p:inputText id="campoPontoReferencia" value="#{clienteMB.cliente.pontoReferencia}"
+                                 required="true" requiredMessage="Campo obrigatório"/>
+                    <p:message for="campoPontoReferencia"/>
+
+                    <h:outputText value="CEP:"/>
+                    <p:inputMask mask="99999-999" id="campoCEP" value="#{clienteMB.cliente.cep}"
+                                 required="true" requiredMessage="Campo obrigatório"/>
+                    <p:message for="campoCEP"/>
+
+                    <h:outputText value="Cidade:"/>
+                    <p:inputText id="campoCidade" value="#{clienteMB.cliente.cidade}"
+                                 required="true" requiredMessage="Campo obrigatório"/>
+                    <p:message for="campoCidade"/>
+
+                    <h:outputText value="Estado: "/>  
+                    <p:selectOneMenu id="campoEstado" value="#{clienteMB.cliente.estado}" 
+                                     required="true" requiredMessage="Campo Obrigatório">  
+                        <f:selectItem itemLabel="Selecione o estado" itemValue="" />  
+                        <f:selectItem itemLabel="AC" itemValue="AC" />  
+                        <f:selectItem itemLabel="AL" itemValue="AL" />  
+                        <f:selectItem itemLabel="AP" itemValue="AP" /> 
+                        <f:selectItem itemLabel="AM" itemValue="AM" />
+                        <f:selectItem itemLabel="BA" itemValue="BA" />
+                        <f:selectItem itemLabel="CE" itemValue="CE" />
+                        <f:selectItem itemLabel="DF" itemValue="DF" />
+                        <f:selectItem itemLabel="ES" itemValue="ES" />
+                        <f:selectItem itemLabel="GO" itemValue="GO" />
+                        <f:selectItem itemLabel="MA" itemValue="MA" />
+                        <f:selectItem itemLabel="MT" itemValue="MT" />
+                        <f:selectItem itemLabel="MS" itemValue="MS" />
+                        <f:selectItem itemLabel="MG" itemValue="MG" />
+                        <f:selectItem itemLabel="PA" itemValue="PA" />
+                        <f:selectItem itemLabel="PB" itemValue="PB" />
+                        <f:selectItem itemLabel="PR" itemValue="PR" />
+                        <f:selectItem itemLabel="PE" itemValue="PE" />
+                        <f:selectItem itemLabel="PI" itemValue="PI" />
+                        <f:selectItem itemLabel="RJ" itemValue="RJ" />
+                        <f:selectItem itemLabel="RN" itemValue="RN" />
+                        <f:selectItem itemLabel="RS" itemValue="RS" />
+                        <f:selectItem itemLabel="RO" itemValue="RO" />
+                        <f:selectItem itemLabel="RR" itemValue="RR" />
+                        <f:selectItem itemLabel="SC" itemValue="SC" />
+                        <f:selectItem itemLabel="SP" itemValue="SP" />
+                        <f:selectItem itemLabel="SE" itemValue="SE" />
+                        <f:selectItem itemLabel="TO" itemValue="TO" />
+
+                    </p:selectOneMenu>
+                    <p:message for="campoEstado"/>
+
+                    <h:outputText value="Telefone:"/>
+                    <p:inputMask id="campoTelefone" mask="(99) 9999-9999"
+                                 value="#{clienteMB.cliente.telefone}"
+                                 required="true" requiredMessage="Campo obrigatório"
+                                 validatorMessage="Digite um telefone no formato (XX) XXXX-XXXX"/>
+                    <p:message for="campoTelefone"/>
+
+                    <h:outputText value="Data de nascimento:"/>
+                    <p:calendar id="campoData" value="#{clienteMB.cliente.dataNascimento}"
+                                required="true" requiredMessage="Campo obrigatório"
+                                navigator="true" maxdate="today" yearRange="c-120:c"/>
+                    <p:message for="campoData"/>
+                </h:panelGrid>
+                
+                <br/>
+                <h:outputText value="Os campos abaixo são obrigatórios apenas para menores de 18 anos"/>
+                <br/>
+                
+                <h:panelGrid columns="3">
+                    <h:outputText value="Responsável:"/>
+                    <p:inputText id="campoResp" value="#{clienteMB.cliente.responsavel}"/>
+                    <p:message for="campoResp"/>
+
+                    <h:outputText value="Parentesco:"/>
+                    <p:inputText id="campoRespParentesco" value="#{clienteMB.cliente.respParentesco}"/>
+                    <p:message for="campoRespParentesco"/>
+                    
+                    <h:outputText value="Telefone:"/>
+                    <p:inputMask id="campoRespTelefone" mask="(99) 9999-9999"
+                                 value="#{clienteMB.cliente.respTelefone}"
+                                 validatorMessage="Digite um telefone no formato (XX) XXXX-XXXX"/>
+                    <p:message for="campoRespTelefone"/>
+                    
+                    
+                </h:panelGrid>
+
+                <p:commandButton value="Cadastrar" action="#{clienteMB.cadastrar()}" image="ui-icon-disk" ajax="false"/>
+                <p:commandButton value="Alterar" action="#{clienteMB.alterar()}" image="ui-icon-pencil" ajax="false"/>
+            </h:form>
+
+            <h:form>
+                <p:commandButton value="Cancelar" action="#{clienteMB.cancelar()}" image="ui-icon-cancel" ajax="false"/>
+            </h:form>
+
+        </p:panel>
+        
+        <!--Formularios de pesquisa-->
+
+        <p:panel header="Pesquisar Clientes Por Nome">
+            <h:form id="formPesqClientes">
+                <h:panelGrid columns="3">
+                    <h:outputLabel value="Nome do Cliente:"/>
+                    <p:inputText id="campoPesqNome" value="#{clienteMB.pesquisa}"
+                                 required="true" requiredMessage="Campo obrigatório"/>
+                    <p:message for="formPesqClientes"/>
+                </h:panelGrid>
+                <p:commandButton value="Pesquisar" ajax="false"
+                                 action="#{clienteMB.pesquisarPorNome()}" image="ui-icon-search"/>
+            </h:form>
+        </p:panel>
+        <hr></hr>
+
+        <p:panel header="Pesquisar Todos os Clientes">
+            <h:form id="formPesquisaTodos">
+                <p:commandButton value="Pesquisar todos" ajax="false"
+                                 action="#{clienteMB.pesquisar()}" image="ui-icon-search"/>
+            </h:form>
+        </p:panel>
+    </body>
+</html>
